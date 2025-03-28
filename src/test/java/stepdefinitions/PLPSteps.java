@@ -18,8 +18,8 @@ public class PLPSteps {
     private WebDriver driver;
 
 
-    @Given("user is logged in successfully")
-    public void user_is_logged_in_successfully() {
+    @Given("user is logged in successfully and accessed PLP")
+    public void user_is_logged_in_successfully_and_accessed_plp() {
 
         driver = Hooks.driver;
         loginPage = new LoginPage(driver);
@@ -48,6 +48,19 @@ public class PLPSteps {
     public void product_is_added_to_basket() {
         PLP.getCartBadgeCount();
         Assert.assertEquals(1, PLP.getCartBadgeCount());
+
+    }
+
+    @When("user clicks to sort by dropdown and select price low to high")
+    public void user_clicks_to_sort_by_dropdown_and_select_price_low_to_high() {
+        PLP.sortByPriceLowToHigh();
+
+    }
+    @Then("product list is sorted by price ascending")
+    public void product_list_is_sorted_by_price_ascending() {
+
+        boolean lowToHighSorted = PLP.verifyPriceLowToHighSorting();
+        Assert.assertTrue("Product prices are not sorted in ascending order.", lowToHighSorted);
 
     }
 }
