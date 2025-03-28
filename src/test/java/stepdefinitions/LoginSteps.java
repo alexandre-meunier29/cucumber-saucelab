@@ -1,5 +1,7 @@
 package stepdefinitions;
 import hooks.Hooks;
+import io.cucumber.java.Before;
+import utils.TestDataLoader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -7,29 +9,23 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.LoginPage;
 
+
 public class LoginSteps {
 
+    LoginPage loginPage ;
     private WebDriver driver;
 
 
+    @Given("user enters valid username and password")
+    public void user_enters_valid_username_and_password() {
+        driver = Hooks.driver;
+        loginPage = new LoginPage(driver);
 
-    LoginPage loginPage ;
+        String username = TestDataLoader.getInstance().getUserName();
+        String password = TestDataLoader.getInstance().getPassword();
 
-    @Given("user enters valid username")
-    public void user_enters_username() {
-
-        loginPage = new LoginPage(Hooks.driver);
-
-        loginPage.enterUserName("standard_user");
-
-    }
-
-
-    @And("user enters valid password")
-    public void user_enters_password() {
-
-        loginPage.enterPassword("secret_sauce");
-
+        loginPage.enterUserName(username);
+        loginPage.enterPassword(password);
     }
 
 
@@ -47,6 +43,26 @@ public class LoginSteps {
         String expectedURL = "https://www.saucedemo.com/inventory.html";
 
         Assert.assertEquals(expectedURL, actualURL);
+
+    }
+
+    @Given("user enters invalid username and password")
+    public void user_enters_invalid_username_and_password() {
+        driver = Hooks.driver;
+        if (driver == null) {
+            throw new IllegalStateException("Driver is null. Check Hooks initialization.");
+        }
+
+
+        loginPage = new LoginPage(driver);
+
+        loginPage.enterUserName("Dummy-user");
+        loginPage.enterPassword("dummy-password");
+
+    }
+    @Then("the user is not logged in and get error message")
+    public void the_user_is_not_logged_in_and_get_error_message() {
+        loginPage.isErrorMessageDisplayed();
 
     }
 

@@ -37,8 +37,17 @@ public class TestDataLoader {
 
 
     public String getAppURL() {
-
         return prop.getProperty("appurl");
+
+    }
+
+    public String getUserName() {
+        return prop.getProperty("user");
+
+    }
+
+    public String getPassword() {
+        return prop.getProperty("password");
 
     }
 

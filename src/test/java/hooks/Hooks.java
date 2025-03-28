@@ -2,7 +2,9 @@ package hooks;
 
 import constants.FrameworkConstants;
 import driver.DriverFactory;
+import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
+import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import utils.PropertyUtils;
@@ -14,7 +16,7 @@ public class Hooks {
 
     public static WebDriver driver ;
 
-    @BeforeAll
+    @Before
     public static void beforeHooks() {
 
         Properties properties = 	PropertyUtils.propertyUtils(FrameworkConstants.CONFIG_FILE_PATH);
@@ -28,14 +30,13 @@ public class Hooks {
     }
 
 
-    @AfterAll
-    public static void afterHooks() {
-        driver.quit();
+    @After
+    public void afterHooks() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
-
-
-
-
 
 
 
