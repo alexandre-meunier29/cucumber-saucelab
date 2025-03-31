@@ -7,8 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import pages.LoginPage;
-import pages.PLP;
+import pages.*;
 import utils.TestDataLoader;
 
 public class PLPSteps {
@@ -17,12 +16,15 @@ public class PLPSteps {
     PLP PLP;
     private WebDriver driver;
 
+    public PLPSteps() {
+        driver = Hooks.driver;
+        this.loginPage = new LoginPage(driver);
+        this.PLP = new PLP(driver);
+    }
+
 
     @Given("user is logged in successfully and accessed PLP")
     public void user_is_logged_in_successfully_and_accessed_plp() {
-
-        driver = Hooks.driver;
-        loginPage = new LoginPage(driver);
 
         String username = TestDataLoader.getInstance().getUserName();
         String password = TestDataLoader.getInstance().getPassword();
@@ -30,7 +32,6 @@ public class PLPSteps {
         loginPage.enterUserName(username);
         loginPage.enterPassword(password);
         loginPage.clickOnLogin();
-        PLP = new PLP(driver);
 
         String currentURL = driver.getCurrentUrl();
         String expectedURL = "https://www.saucedemo.com/inventory.html";

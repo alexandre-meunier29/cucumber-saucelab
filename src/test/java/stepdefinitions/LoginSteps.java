@@ -1,6 +1,5 @@
 package stepdefinitions;
 import hooks.Hooks;
-import io.cucumber.java.Before;
 import utils.TestDataLoader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -15,11 +14,14 @@ public class LoginSteps {
     LoginPage loginPage ;
     private WebDriver driver;
 
+    public LoginSteps() {
+        driver = Hooks.driver;
+        this.loginPage = new LoginPage(driver);
+    }
+
 
     @Given("user enters valid username and password")
     public void user_enters_valid_username_and_password() {
-        driver = Hooks.driver;
-        loginPage = new LoginPage(driver);
 
         String username = TestDataLoader.getInstance().getUserName();
         String password = TestDataLoader.getInstance().getPassword();
@@ -48,13 +50,6 @@ public class LoginSteps {
 
     @Given("user enters invalid username and password")
     public void user_enters_invalid_username_and_password() {
-        driver = Hooks.driver;
-        if (driver == null) {
-            throw new IllegalStateException("Driver is null. Check Hooks initialization.");
-        }
-
-
-        loginPage = new LoginPage(driver);
 
         loginPage.enterUserName("Dummy-user");
         loginPage.enterPassword("dummy-password");

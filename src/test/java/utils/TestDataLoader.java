@@ -51,4 +51,19 @@ public class TestDataLoader {
 
     }
 
+    public String getFirstName() {
+        return prop.getProperty("firstname");
+
+    }
+
+    public String getLastName() {
+        return prop.getProperty("lastname");
+
+    }
+
+    public String getPostCode() {
+        return prop.getProperty("postcode");
+
+    }
+
 }

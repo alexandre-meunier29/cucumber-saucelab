@@ -3,12 +3,15 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class PLP extends BasePage{
     public PLP(WebDriver d) {
         super(d);
+        PageFactory.initElements(d, this);
+
     }
 
     // Locators //
@@ -19,6 +22,9 @@ public class PLP extends BasePage{
     //Cart badge count
     @FindBy(className = "shopping_cart_badge")
     private WebElement cartBadge;
+
+    @FindBy(xpath = "//a[@class='shopping_cart_link']")
+    private WebElement cartButton;
 
     // Sort by dropdown
     @FindBy(xpath = "//select[@class='product_sort_container']//option[text()='Price (low to high)']")
@@ -39,6 +45,10 @@ public class PLP extends BasePage{
         return Integer.parseInt(cartBadge.getText());
     }
 
+    // click cart button
+    public void clickCartButton() {
+        click(cartButton);
+    }
 
     // add first product to basket method
     public void addFirstProductToBasket() {
