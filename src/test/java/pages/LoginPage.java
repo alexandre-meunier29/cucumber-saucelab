@@ -42,6 +42,11 @@ public class LoginPage extends BasePage{
 
     public void isErrorMessageDisplayed() {Assert.assertTrue(errorMessageBlock.isDisplayed());}
 
+    public void userLockedErrorMessage() {
+        String actualText = errorMessageBlock.getText();
+        String expectedText = "Epic sadface: Sorry, this user has been locked out.";
+        Assert.assertEquals(expectedText, actualText);}
+
     public void isLoginButtonDisplayed() {Assert.assertTrue(login.isDisplayed());}
 
 

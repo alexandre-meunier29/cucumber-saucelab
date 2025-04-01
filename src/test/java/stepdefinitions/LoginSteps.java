@@ -61,4 +61,16 @@ public class LoginSteps {
 
     }
 
+    @Given("user enters locked out username and password")
+    public void user_enters_locked_out_username_and_password() {
+        String password = TestDataLoader.getInstance().getPassword();
+        loginPage.enterUserName("locked_out_user");
+        loginPage.enterPassword(password);
+    }
+    @Then("the user is not logged in and get user locked out error message")
+    public void the_user_is_not_logged_in_and_get_user_locked_out_error_message() {
+        loginPage.userLockedErrorMessage();
+
+    }
+
 }

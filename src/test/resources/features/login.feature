@@ -10,6 +10,11 @@ Feature: Login test cases for saucedemo application.
     And user clicks on login button
     Then the user is not logged in and get error message
 
+  Scenario: Unsuccessful login with locked user
+    Given user enters locked out username and password
+    And user clicks on login button
+    Then the user is not logged in and get user locked out error message
+
   Scenario: Logout
     Given user is logged in successfully and accessed PLP
     When user clicks logout button from the side menu
