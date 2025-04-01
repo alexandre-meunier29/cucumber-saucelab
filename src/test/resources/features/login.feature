@@ -9,3 +9,8 @@ Feature: Login test cases for saucedemo application.
     Given user enters invalid username and password
     And user clicks on login button
     Then the user is not logged in and get error message
+
+  Scenario: Logout
+    Given user is logged in successfully and accessed PLP
+    When user clicks logout button from the side menu
+    Then user is redirected to login page

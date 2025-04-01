@@ -42,5 +42,7 @@ public class LoginPage extends BasePage{
 
     public void isErrorMessageDisplayed() {Assert.assertTrue(errorMessageBlock.isDisplayed());}
 
+    public void isLoginButtonDisplayed() {Assert.assertTrue(login.isDisplayed());}
+
 
 }

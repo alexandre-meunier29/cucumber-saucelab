@@ -64,4 +64,45 @@ public class PLPSteps {
         Assert.assertTrue("Product prices are not sorted in ascending order.", lowToHighSorted);
 
     }
+
+    @When("user clicks logout button from the side menu")
+    public void user_clicks_logout_button_from_the_side_menu() {
+        PLP.clickBurgerMenu();
+        PLP.clickLogout();
+    }
+
+    @Then("user is redirected to login page")
+    public void user_is_redirected_to_login_page() {
+        loginPage.isLoginButtonDisplayed();
+
+    }
+
+    @Given("user clicks on the first product of the list")
+    public void user_clicks_on_the_first_product_of_the_list() {
+        PLP.clickFirstProduct();
+
+    }
+
+    @When("user clicks add to basket button on the third listed product")
+    public void user_clicks_add_to_basket_button_on_the_third_listed_product() {
+        PLP.addThirdProductToBasket();
+
+    }
+    @Then("two products are added to basket")
+    public void two_products_are_added_to_basket() {
+        PLP.getCartBadgeCount();
+        Assert.assertEquals(2, PLP.getCartBadgeCount());
+        System.out.println("There are 2 products added to cart");
+    }
+
+    @When("user clicks add to basket button on the cheapest listed product")
+    public void user_clicks_add_to_basket_button_on_the_cheapest_listed_product() {
+        PLP.addCheapestProductToBasket();
+    }
+
+    @When("user clicks add to basket button on the most expensive listed product")
+    public void user_clicks_add_to_basket_button_on_the_most_expensive_listed_product() {
+        PLP.addMostExpProductToBasket();
+    }
+
 }

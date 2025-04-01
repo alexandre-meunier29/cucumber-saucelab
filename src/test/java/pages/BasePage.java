@@ -29,7 +29,7 @@ public class BasePage {
 
 
     public void enterValue(WebElement element , String value) {
-        waitForElementToBEVisible(element);
+        waitForElementToBeVisible(element);
         element.clear();
         element.sendKeys(value);
 
@@ -42,7 +42,7 @@ public class BasePage {
     }
 
 
-    private WebElement waitForElementToBEVisible(WebElement element) {
+    private WebElement waitForElementToBeVisible(WebElement element) {
         return	wait.until(ExpectedConditions.visibilityOf(element));
 
     }
