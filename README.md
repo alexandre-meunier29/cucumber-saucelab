@@ -65,6 +65,10 @@ These values are read from the `prod_test_data.properties` file and used in the 
 4. You can run the test directly from the gherkins files located in feature folder
 5. Or use the runner in the runners package
 
+## License
 
+This project is licensed under the [MIT License](LICENSE). You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, as long as you include the original copyright notice and this permission notice in all copies or substantial portions of the Software.
+
+The software is provided "as is", without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and noninfringement. In no event shall the authors or copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.
 
 
