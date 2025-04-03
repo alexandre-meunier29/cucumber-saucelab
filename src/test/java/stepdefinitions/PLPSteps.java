@@ -1,7 +1,6 @@
 package stepdefinitions;
 
 import hooks.Hooks;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -14,12 +13,18 @@ public class PLPSteps {
 
     LoginPage loginPage ;
     PLP PLP;
+    PDP PDP;
+    CartPage CartPage;
+    CheckoutDetailsPage CheckoutDetailsPage;
     private WebDriver driver;
 
     public PLPSteps() {
         driver = Hooks.driver;
         this.loginPage = new LoginPage(driver);
         this.PLP = new PLP(driver);
+        this.PDP = new PDP(driver);
+        this.CartPage = new CartPage(driver);
+        this.CheckoutDetailsPage = new CheckoutDetailsPage(driver);
     }
 
 
@@ -103,6 +108,38 @@ public class PLPSteps {
     @When("user clicks add to basket button on the most expensive listed product")
     public void user_clicks_add_to_basket_button_on_the_most_expensive_listed_product() {
         PLP.addMostExpProductToBasket();
+    }
+
+    private double firstProductPrice;
+    private double pdpPrice;
+    private double firstItemPriceCart;
+    private double firstItemPriceCheckout;
+
+    @Then("the price of the first product on the PLP should be captured")
+    public void the_price_of_the_first_product_on_the_plp_should_be_captured() {
+        this.firstProductPrice = PLP.getFirstProductPrice();
+        System.out.println("First Product Price (PLP): " + firstProductPrice);
+        Assert.assertTrue("Product price is not valid.", firstProductPrice > 0);
+    }
+    @Then("the price on the PDP should be the same as the price captured from the PLP")
+    public void the_price_on_the_pdp_should_be_the_same_as_the_price_captured_from_the_plp() {
+        this.pdpPrice = PDP.getPDPprice();
+        System.out.println("Product Price (PDP): " + pdpPrice);
+        Assert.assertEquals("The price on PDP does not match the price on PLP", firstProductPrice, pdpPrice, 0.01);
+
+    }
+    @Then("the product should appear in the cart as the same price as captured from the PLP")
+    public void the_product_should_appear_in_the_cart_as_the_same_price_as_captured_from_the_plp() {
+        this.firstItemPriceCart = CartPage.getCartFirstItemPrice();
+        System.out.println("Product Price (Cart): " + firstItemPriceCart);
+        Assert.assertEquals("The price on Cart does not match the price on PLP", firstProductPrice, firstItemPriceCart, 0.01);
+
+    }
+    @Then("the product should appear in the checkout as the same price as captured from the PLP")
+    public void the_product_should_appear_in_the_checkout_as_the_same_price_as_captured_from_the_plp() {
+        this.firstItemPriceCheckout = CheckoutDetailsPage.getCheckoutFirstItemPrice();
+        System.out.println("Product Price (Checkout): " + firstItemPriceCheckout);
+        Assert.assertEquals("The price on Checkout does not match the price on PLP", firstProductPrice, firstItemPriceCheckout, 0.01);
     }
 
 }

@@ -20,6 +20,9 @@ public class PDP extends BasePage{
     @FindBy (id = "back-to-products")
     private WebElement backToPLPBtn;
 
+    @FindBy(xpath = "//div[@class='inventory_details_price']")
+    private WebElement pricePDP;
+
 
     // Methods //
 
@@ -29,5 +32,12 @@ public class PDP extends BasePage{
 
     public void isBackToPLPVisible () {
         Assert.assertTrue(backToPLPBtn.isDisplayed());
+    }
+
+    public double getPDPprice() {
+        String priceText = pricePDP.getText().trim();
+        priceText = priceText.replaceAll("[^0-9.]", "");
+        double productPricePDP = Double.parseDouble(priceText);
+        return productPricePDP;
     }
 }

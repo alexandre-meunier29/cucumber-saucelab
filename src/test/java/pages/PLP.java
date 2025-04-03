@@ -172,4 +172,14 @@ public class PLP extends BasePage{
         }
         return true;
     }
+
+    public double getFirstProductPrice() {
+        if (itemPrices.size() > 0) {
+            String priceText = itemPrices.get(0).getText().replace("$", "").trim();  // Remove "$" and any extra spaces
+            double productPricePLP = Double.parseDouble(priceText);
+            return productPricePLP;
+        } else {
+            throw new RuntimeException("No product prices found on the page.");
+        }
+    }
 }

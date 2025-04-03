@@ -28,6 +28,9 @@ public class CartPage extends BasePage{
     @FindBy(xpath = "//div[@class='cart_item']")
     private WebElement cartItemBlock;
 
+    @FindBy(xpath = "//div[@class='inventory_item_price']")
+    private WebElement cartFirstItemPrice;
+
 
     // Methods //
 
@@ -48,5 +51,12 @@ public class CartPage extends BasePage{
             System.out.println("Product successfully removed from cart.");
         }
 
+    }
+
+    public double getCartFirstItemPrice() {
+        String priceText = cartFirstItemPrice.getText().trim();
+        priceText = priceText.replaceAll("[^0-9.]", "");
+        double firstItemPriceCart = Double.parseDouble(priceText);
+        return firstItemPriceCart;
     }
 }
