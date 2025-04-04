@@ -22,8 +22,9 @@ public class Hooks {
         FrameworkConstants.BROWSER =  properties.getProperty("browser");
         FrameworkConstants.ENVIRONMENT =  properties.getProperty("environment");
         FrameworkConstants.DEVICE = properties.getProperty("device");
+        String headlessMode = properties.getProperty("headless");
 
-        driver	= DriverFactory.initDriver(FrameworkConstants.BROWSER, FrameworkConstants.DEVICE);
+        driver	= DriverFactory.initDriver(FrameworkConstants.BROWSER, FrameworkConstants.DEVICE, headlessMode);
         driver.get(TestDataLoader.getInstance().getAppURL());
 
     }

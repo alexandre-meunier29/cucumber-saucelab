@@ -22,6 +22,7 @@ This file contains the configuration values such as the browser type and environ
 `config.properties`:
 - **browser**: The browser to be used for testing (Chrome, Firefox, etc.).
 - **environment**: The environment to use for testing (e.g., Prod, Staging).
+- **headless**: test can run in browser window or headless (on, off) 
 - **device**: Define the size of your window (desktop, tablet, mobile)
 
 Desktop: 1920x1080,
