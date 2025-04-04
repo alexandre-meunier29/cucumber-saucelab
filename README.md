@@ -65,6 +65,9 @@ These values are read from the `prod_test_data.properties` file and used in the 
 4. You can run the test directly from the gherkins files located in feature folder
 5. Or use the runner in the runners package
 
+## Allure reports are available
+By running any test with the runner, it will generate an Allure report in root/allure-results
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE). You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, as long as you include the original copyright notice and this permission notice in all copies or substantial portions of the Software.
