@@ -59,6 +59,21 @@
       <version>5.0.3</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-java-commons -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-java-commons</artifactId>
+      <version>2.29.1</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber7-jvm -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-cucumber7-jvm</artifactId>
+      <version>2.29.1</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -77,6 +92,22 @@
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.0.0-M5</version>
         </plugin>
+
+        <!-- Allure Maven Plugin -->
+        <plugin>
+          <groupId>io.qameta.allure</groupId>
+          <artifactId>allure-maven</artifactId>
+          <version>2.12.0</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>generate</goal>
+                <goal>serve</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
       </plugins>
     </pluginManagement>
   </build>
